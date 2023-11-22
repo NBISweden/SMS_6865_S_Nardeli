@@ -323,7 +323,7 @@ We can compare the number of mapped reads with the number of original reads (in 
     - fq: 16,936,653
     - bam: 36,589
 
-**Note**: the number in bams are unfiltered reads (for sequencing errors making
+**Note**: the number in reads in bam files are unfiltered reads (for sequencing errors making
 them, e.g., unidentifyable as "gene").
 
 For detailed parsing, we need a dedicated script.
