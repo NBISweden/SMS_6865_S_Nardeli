@@ -16,7 +16,7 @@ Data on rackham.uppmax.uu.se
 
 CPU account (NBIS): naiss2023-22-289
 
-## Filtering data (**DONE**)
+## Filtering data [**DONE**]
 
 On rackham:
 
@@ -55,7 +55,9 @@ On rackham:
 We now have filtered and paired data in `/proj/naiss2023-23-413/soppis/fastp-pilot2/output/fastq`
 and `/proj/naiss2023-23-413/soppis/fastp-pilot2/output/fasta`.
 
-## Download data from Arabidopsis.org (`Araport11_cdna_20220914_representative_gene_model.gz` 15M)  (**DONE**)
+## Download data from Arabidopsis.org  [**DONE**]
+
+Download file `Araport11_cdna_20220914_representative_gene_model.gz` (15M)
 
     $ mkdir -p /proj/naiss2023-23-413/soppis/Arabidopsis-data
     $ cd /proj/naiss2023-23-413/soppis/Arabidopsis-data
@@ -66,7 +68,7 @@ and `/proj/naiss2023-23-413/soppis/fastp-pilot2/output/fasta`.
     $ gunzip Araport11_cdna_20220914_representative_gene_model.gz
     $ sbatch bwa-index.slurm.se
 
-## Prepare "list"-file (**DONE**)
+## Prepare "Bait"-file [**DONE**]
 
 On nylander-s:
 
@@ -88,7 +90,7 @@ On rackham:
           sed 's/\t//g' > Bait_Gateway_AtcDNAlibrary.fas
     $ bwa index Bait_Gateway_AtcDNAlibrary.fas
 
-## Mapping (**DONE**)
+## Read mapping [**DONE**]
 
 Strategy:
 
@@ -98,7 +100,7 @@ Strategy:
 4. merge mappings (bam files) from R12, unpaired R1, unpaired R2
 5. Parse the bam (or fasta) and check for presence of the different parts
 
-### Map the merged reads (`*_R12.fq.gz`) against Araport (**DONE**)
+### Map the merged reads (`*_R12.fq.gz`) against Araport [**DONE**]
 
 Align with `Araport11_cdna_20220914_representative_gene_model` as reference.
 13,275,049 million reads against 27,562 sequences (3-16,444 bp).
@@ -112,7 +114,7 @@ On rackham:
 
     $ sbatch Araport_bwa-mem_R12.slurm.sh
 
-### Map the unpaired R1 and R2 reads against Araport (**DONE**)
+### Map the unpaired R1 and R2 reads against Araport [**DONE**]
 
 Will produce bam files with names ending in `*_Araport.sorted.bam`.
 
@@ -122,7 +124,7 @@ Will produce bam files with names ending in `*_Araport.sorted.bam`.
     $ sbatch Araport_bwa-mem_unpaired_R1.slurm.sh
     $ sbatch Araport_bwa-mem_unpaired_R2.slurm.sh
 
-### Extract and relabel mapped reads (**DONE**)
+### Extract and relabel mapped reads [**DONE**]
 
 Will produce compressed fastq files ending in `*_Araport.sorted.fq.gz`
 
@@ -149,7 +151,7 @@ Will produce compressed fastq files ending in `*_Araport.sorted.fq.gz`
     93800	30	150	145	Ncre_pool_EKDL230008376_unpaired_R1_Araport.sorted.fq.gz
     93740	30	150	146	Ncre_pool_EKDL230008376_unpaired_R2_Araport.sorted.fq.gz
 
-### Map the previous mapped and relabeled R12 reads against Bait (**DONE**)
+### Map the previous mapped and relabeled R12 reads against Bait [**DONE**]
 
 Will produce files ending in `*_Bait.sorted.bam`.
 
@@ -158,21 +160,21 @@ Reference db is now `Bait_Gateway_AtcDNAlibrary.fas`.
     $ cd /proj/naiss2023-23-413/soppis/bwa-pilot2
     $ sbatch src/Bait_bwa-mem_R12.slurm.sh
 
-### Map the previous mapped and relabeled R1 reads against Bait (**DONE**)
+### Map the previous mapped and relabeled R1 reads against Bait [**DONE**]
 
 Will produce files ending in `*_Bait.sorted.bam`.
 
     $ cd /proj/naiss2023-23-413/soppis/bwa-pilot2
     $ sbatch src/Bait_bwa-mem_unpaired_R1.slurm.sh
 
-### Map the previous mapped and relabeled R2 reads against Bait (**DONE**)
+### Map the previous mapped and relabeled R2 reads against Bait [**DONE**]
 
 Will produce files ending in `*_Bait.sorted.bam`.
 
     $ cd /proj/naiss2023-23-413/soppis/bwa-pilot2
     $ sbatch src/Bait_bwa-mem_unpaired_R2.slurm.sh
 
-### Merge bam files **(DONE)**
+### Merge bam files [**DONE**]
 
 Will produce files ending in `*.merged.bam`
 
@@ -191,7 +193,7 @@ We now have
     B2_EKDL230008375.merged.bam
     Ncre_pool_EKDL230008376.merged.bam
 
-## Parse bam files (**NOT DONE**)
+## Parse bam files [**NOT DONE**]
 
 Samtools can give us a quick overview over the number of mapped reads:
 `reference sequence name`, `sequence length`, `# mapped read-segments`, `# unmapped read-segments`
@@ -326,7 +328,7 @@ We can compare the number of mapped reads with the number of original reads (in 
 **Note**: the number in reads in bam files are unfiltered reads (for sequencing errors making
 them, e.g., unidentifyable as "gene").
 
-For detailed parsing, we need a dedicated script.
+For detailed parsing, we need a dedicated script. For a prototype, see [6865.ipynb](6865.ipynb).
 
 ---
 
