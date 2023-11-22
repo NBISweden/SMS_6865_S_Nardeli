@@ -7,7 +7,7 @@
 
 Project URL: <https://projects.nbis.se/issues/6865>
 
-GitHub URL: <https://github.com/NBISweden/SMS_6865_S_Nardeli>
+GitHub URL: <https://github.com/nylander/SMS_6865_S_Nardeli>
 
 Data on rackham.uppmax.uu.se
 
