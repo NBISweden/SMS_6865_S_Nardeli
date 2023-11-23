@@ -1,6 +1,6 @@
 # NBIS #6865
 
-- Last modified: ons nov 22, 2023  01:36
+- Last modified: tor nov 23, 2023  03:04
 - Sign: JN
 
 ## Description
@@ -57,7 +57,40 @@ and `/proj/naiss2023-23-413/soppis/fastp-pilot2/output/fasta`.
 
 ## Download data from Arabidopsis.org  [**DONE**]
 
-Download file `Araport11_cdna_20220914_representative_gene_model.gz` (15M)
+Reference data from the Arabidopsis.org web site.
+
+File descriptions (<https://www.arabidopsis.org/download_files/Sequences/Araport11_blastsets/README.20220914.md>):
+
+    Arabidopsis thaliana Genome Annotation Official Release (Approved by NCBI GenBank)
+    Starting Version: Araport11
+    Original Release date: June 2016
+    Latest Update date: September 2022
+
+    Changes compared to previous release (Apr 2016)
+    Fixed mis-formatted Symbol names in FASTA headers from date format to Symbol name.
+
+    Files in this release:
+
+    Araport11_seq_20220914.gz                        All gene sequences in FASTA format
+    Araport11_cds_20220914.gz                        Coding sequences in FASTA format
+    Araport11_pep_20220914.gz                        Protein translations in FASTA format
+    Araport11_cdna_20220914.gz                       Transcript sequences in FASTA format
+    Araport11_3_utr_20220914.gz                      3' UTR sequences in FASTA format
+    Araport11_5_utr_20220914.gz                      5' UTR sequences in FASTA format
+    Araport11_intergenic_20220914.gz                 Intergenic sequences in FASTA format
+    Araport11_intron_20220914.gz                     Intronic sequences in FASTA format
+    Araport11_pep20220914.gz                         Peptide sequences in FASTA format
+    Araport11_downstream_[500/1000/3000]_20220914.gz Sequences [500/1000/3000/] downstream of each gene in FASTA format
+    Araport11_upstream_[500/1000/3000]_20220914.gz   Sequences [500/1000/3000/] upstream of each gene in FASTA format
+
+    README.20220914.md                     	- This README file
+
+    These files were generated at TAIR.
+
+    If you have any questions regarding the data, please write to <mailto:curator@arabidopsis.org>
+
+Download files `Araport11_cdna_20220914_representative_gene_model.gz` (15M), and
+`Araport11_cds_20220914_representative_gene_model.gz` (12 MB)
 
     $ mkdir -p /proj/naiss2023-23-413/soppis/Arabidopsis-data
     $ cd /proj/naiss2023-23-413/soppis/Arabidopsis-data
@@ -66,6 +99,11 @@ Download file `Araport11_cdna_20220914_representative_gene_model.gz` (15M)
     Nseqs	Min.len	Max.len	Avg.len	File
     27562	3	16444	1631	Araport11_cdna_20220914_representative_gene_model.gz
     $ gunzip Araport11_cdna_20220914_representative_gene_model.gz
+    $ wget https://www.arabidopsis.org/download_files/Sequences/Araport11_blastsets/Araport11_cds_20220914_representative_gene_model.gz .
+    $ get_fasta_info Araport11_cds_20220914_representative_gene_model.gz
+    Nseqs	Min.len	Max.len	Avg.len	File
+    27562	3	16203	1220	Araport11_cds_20220914_representative_gene_model.gz
+    $ gunzip Araport11_cds_20220914_representative_gene_model.gz
     $ sbatch bwa-index.slurm.se
 
 ## Prepare "Bait"-file [**DONE**]
@@ -120,9 +158,8 @@ Will produce bam files with names ending in `*_Araport.sorted.bam`.
 
     $ cd /proj/naiss2023-23-413/soppis/bwa-pilot2
     $ ln -s /proj/naiss2023-23-413/soppis/fastp-pilot2/output/fastq/*_R{1,2}_unpaired.fq.gz .
-
-    $ sbatch Araport_bwa-mem_unpaired_R1.slurm.sh
-    $ sbatch Araport_bwa-mem_unpaired_R2.slurm.sh
+    $ sbatch src/Araport_bwa-mem_unpaired_R1.slurm.sh
+    $ sbatch src/Araport_bwa-mem_unpaired_R2.slurm.sh
 
 ### Extract and relabel mapped reads [**DONE**]
 
