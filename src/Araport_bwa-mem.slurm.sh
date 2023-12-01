@@ -2,9 +2,9 @@
 
 # Slurm script example.
 # Test by using
-#     sbatch --test-only Bait_bwa-mem_unpaired_R1.slurm.sh
+#     sbatch --test-only Araport_bwa-mem.slurm.sh
 # Start by using 
-#     sbatch Bait_bwa-mem_unpaired_R1.slurm.sh
+#     sbatch Araport_bwa-mem.slurm.sh
 # Stop by using
 #     scancel 1234
 #     scancel -i -u $USER
@@ -16,7 +16,7 @@
 # Note the choices (the whole) "node" or (a single) "core"
 
 
-#SBATCH -J Bait_bwa-mem_unpaired_R1
+#SBATCH -J Araport_bwa-mem
 #SBATCH -A naiss2023-22-289
 #SBATCH -t 04:00:00
 #SBATCH -p core
@@ -26,13 +26,12 @@ module load bioinfo-tools
 module load bwa/0.7.17
 module load samtools/1.16
 
-ref="Bait_Gateway_AtcDNAlibrary.fas"
+ref="Araport11_cds_20220914_representative_gene_model"
 
 cd /proj/naiss2023-23-413/soppis/bwa-pilot2
 
-for f in *_R1_Araport.sorted.fq.gz ; do
-    g="${f%.sorted.fq.gz}"_Bait
-    echo "$g"
+for f in *_Bait.sorted.fq.gz ; do
+    g="${f%.sorted.fq.gz}"_Araport
     bwa mem \
         -t 10 \
         "$ref" \
@@ -40,5 +39,5 @@ for f in *_R1_Araport.sorted.fq.gz ; do
         samtools sort \
             -@10 \
             -o "$g".sorted.bam -
+    samtools index -@ 10 "$g".sorted.bam
 done
-
