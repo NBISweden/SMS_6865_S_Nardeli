@@ -217,8 +217,7 @@ We now have:
 
 Compare number of reads in fastp-filtered files, with number of mapped reads in the final (`Baits_Araport`) mapping.
 
-**Note**: the number in reads in bam files are unfiltered reads (for sequencing errors making
-them, e.g., unidentifyable as "gene").
+**Note**: the number in reads in bam files are unfiltered reads (i.e., we have not yet checked if they do indeed match the "gene"-sequences).
 
     $ cd /proj/naiss2023-23-413/soppis/bwa-pilot2
     $ for f in *.merged.bam ; do
