@@ -7,7 +7,7 @@
 
 Project URL: <https://projects.nbis.se/issues/6865>
 
-GitHub URL: <https://github.com/nylander/SMS_6865_S_Nardeli>
+GitHub URL: <https://github.com/NBISweden/SMS_6865_S_Nardeli>
 
 Data on rackham.uppmax.uu.se
 
@@ -30,7 +30,7 @@ On rackham:
     Ncre_pool_EKDL230008376-1A_HF5CYDSX7_L2_2.fq.gz
 
     $ cd /proj/naiss2023-23-413/soppis
-    $ git clone https://github.com/nylander/fastp-cleaning-6439.git fastp-pilot2
+    $ git clone https://github.com/NBISweden/fastp-cleaning-6439.git fastp-pilot2
     $ cd fastp-pilot2
     $ sed -i -e 's/snic1234-56-789/naiss2023-22-289/' rackham/rackham.yaml
     $ cd /proj/naiss2023-23-413/soppis/fastp-pilot2/input/
