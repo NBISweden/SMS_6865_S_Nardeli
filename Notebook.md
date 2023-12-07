@@ -16,6 +16,9 @@ Data on rackham.uppmax.uu.se
 
 CPU account (NBIS): naiss2023-22-289
 
+All analyses performed on `rackham.uppmax.uu.se`.
+Additional software used: `get_fasta_info` (<https://github.com/nylander/get_fasta_info>).
+
 ## Filtering data [**DONE**]
 
 On rackham:
@@ -108,7 +111,7 @@ Download files `Araport11_cdna_20220914_representative_gene_model.gz` (15M), and
 
 ## Prepare "Bait"-file [**DONE**]
 
-On nylander-s:
+On local (personal) computer:
 
 Input file: `Bait_Gateway_AtcDNAlibrary.xlsx`
 
