@@ -97,16 +97,21 @@ Download files `Araport11_cdna_20220914_representative_gene_model.gz` (15M), and
 
     $ mkdir -p /proj/naiss2023-23-413/soppis/Arabidopsis-data
     $ cd /proj/naiss2023-23-413/soppis/Arabidopsis-data
+    
     $ wget https://www.arabidopsis.org/download_files/Sequences/Araport11_blastsets/Araport11_cdna_20220914_representative_gene_model.gz .
     $ get_fasta_info Araport11_cdna_20220914_representative_gene_model.gz
     Nseqs	Min.len	Max.len	Avg.len	File
     27562	3	16444	1631	Araport11_cdna_20220914_representative_gene_model.gz
+    
     $ gunzip Araport11_cdna_20220914_representative_gene_model.gz
+    
     $ wget https://www.arabidopsis.org/download_files/Sequences/Araport11_blastsets/Araport11_cds_20220914_representative_gene_model.gz .
     $ get_fasta_info Araport11_cds_20220914_representative_gene_model.gz
     Nseqs	Min.len	Max.len	Avg.len	File
     27562	3	16203	1220	Araport11_cds_20220914_representative_gene_model.gz
+    
     $ gunzip Araport11_cds_20220914_representative_gene_model.gz
+    
     $ sbatch bwa-index.slurm.se
 
 ## Prepare "Bait"-file [**DONE**]
